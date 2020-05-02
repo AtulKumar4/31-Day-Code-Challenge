@@ -4,11 +4,10 @@ The letters in J are guaranteed distinct, and all characters in J and S are lett
 
  Ist Solution -  Fast solution in terms of exection time 
  
- def numJewelsInStones(self, J: str, S: str) -> int:
-        jewel = 0
-        jewel = sum([jewel+ 1  for i,char in enumerate(S) if char in J])
-        return jewel  
+ def numJewelsInStones(self, J: str, S: str) -> int: 
+        return sum([1  for char in S if char in set(list(J))])
 				
+
 2nd Solution - little slow compare to first solution
 
 def numJewelsInStones(self, J: str, S: str) -> int:
