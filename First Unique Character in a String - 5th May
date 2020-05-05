@@ -1,0 +1,35 @@
+Question - Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+
+Solution 1 -  Using pyhton advance container datatypes
+     from collections import Counter
+     def firstUniqChar(self, s: str) -> int:
+        if not len(s):
+            return -1
+        count = Counter(s)
+        for char in count:
+            if count[char] == 1:
+                return s.find(char)
+        return -1  
+
+Solution 2 -
+def firstUniqChar(self, s: str) -> int:
+        if not len(s):
+            return -1
+            
+        charList = {}
+        notunique = set(list(s))
+        for i,char in enumerate(s):
+            if char not in charList:        
+                charList[char] = 1   
+            else:
+                charList[char] += 1
+                
+        res = [key for key in charList if charList[key] == 1]        
+                
+        if len(res) :       
+             
+            return s.find(res[0]) 
+        else:
+            return -1
+
+
