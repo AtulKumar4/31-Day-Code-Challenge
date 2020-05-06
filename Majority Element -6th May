@@ -1,0 +1,16 @@
+Question - Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+You may assume that the array is non-empty and the majority element always exist in the array.
+
+Solution 1 -  
+        def majorityElement(nums: List[int])
+        nums.sort()
+        return nums[(len(nums) // 2)]
+
+Solution 2 -
+    from collections import Counter
+    def majorityElement(nums: List[int]):
+        counts = Counter(nums)
+        threshold = len(nums) // 2
+        l =  [i for i in counts  if counts[i] > threshold]
+        return l[0]
+
