@@ -1,0 +1,14 @@
+Question - Given a positive integer num, write a function which returns True if num is a perfect square else False.
+Note: Do not use any built-in library function such as sqrt.
+
+Solution 1 -  
+ def isPerfectSquare(self, num: int):
+        guess= num
+        while guess * guess > num:
+            guess = (guess + num/guess) //2
+        return guess * guess == num
+Solution 2 – 
+
+def isPerfectSquare(self, num: int):
+    
+        return (num**0.5).is_integer()
