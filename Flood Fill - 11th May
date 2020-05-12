@@ -1,0 +1,34 @@
+Question  - An image is represented by a 2-D array of integers, each integer representing the pixel value of the image (from 0 to 65535).
+Given a coordinate (sr, sc) representing the starting pixel (row and column) of the flood fill, and a pixel value newColor, "flood fill" the image.
+To perform a "flood fill", consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color as the starting pixel), and so on. Replace the color of all of the aforementioned pixels with the newColor.
+At the end, return the modified image.
+
+Solution – 
+def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int):
+        if len(image) == 0:
+            return []
+        
+        X, Y = len(image), len(image[0])
+        color = image[sr][sc]
+        
+        if color == newColor:
+            return image
+        
+        pixels = [(sr, sc)]
+        while len(pixels) > 0:
+            point = pixels.pop()
+            x, y = point[0], point[1]
+            image[x][y] = newColor
+            
+            candidates = ((x + 1, y),
+                          (x - 1, y),
+                          (x, y + 1),
+                          (x, y - 1),)
+            for cand in candidates:
+                x, y = cand[0], cand[1]
+                if x >= X or x < 0 or y >= Y or y < 0:
+                    continue
+                if image[x][y] == color:
+                    pixels.append(cand)
+        
+        return image
