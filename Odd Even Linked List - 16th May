@@ -1,0 +1,44 @@
+Question  - Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
+You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.
+
+Solution – 
+def oddEvenList(self, head: ListNode) -> ListNode:
+        oddhead = forodd = ListNode(0)
+        evenhead = foreven = ListNode(0)
+        isodd = True
+        
+        while head:
+            if isodd:
+                forodd.next = head
+                forodd = forodd.next
+        
+            else:
+                foreven.next = head
+                foreven  = foreven.next
+            isodd = not isodd
+            head = head.next
+        foreven.next = None
+        forodd.next = evenhead.next
+        return oddhead.next
+
+
+def oddEvenList(self, head: ListNode) -> ListNode:
+        values = []
+        current = head
+        
+        while current:
+            values.append(current.val)
+            current = current.next
+        
+        i = 0
+        current = head
+        while i < len(values):
+            current.val = values[i]
+            current = current.next
+            i += 2
+        i =1
+        while i < len(values):
+            current.val = values[i]
+            current = current.next
+            i += 2
+        return head  
