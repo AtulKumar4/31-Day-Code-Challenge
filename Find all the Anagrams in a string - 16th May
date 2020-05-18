@@ -1,0 +1,34 @@
+Question  - Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
+Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.
+The order of output does not matter.
+ Solution – 
+def findAnagrams(self, s: str, p: str) -> List[int]:
+        
+        ans = []
+        target = Counter(p)
+        have = Counter(s[:len(p)-1])
+        for i,c in enumerate(s[len(p)-1:]):
+            have[c] += 1
+            if have == target:
+                ans.append(i)
+            have[s[i]] -= 1
+            if not have[s[i]]:
+                del have[s[i]]
+        return ans
+
+def findAnagrams(self, s: str, p: str) -> List[int]:
+        
+        anagrams = {}
+        
+        size = len(p)
+        sortedp = "".join(sorted(p))
+        
+        i = 0
+        
+        while i <= ((len(s) - len(p))+1):
+            sub = "".join(sorted(s[i:i +size]))
+            if sortedp == sub:
+                anagrams[i] = sub
+            i +=1    
+            
+        return list(anagrams.keys())
