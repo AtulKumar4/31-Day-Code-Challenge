@@ -1,0 +1,16 @@
+Question  Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1. In other words, one of the first string's permutations is the substring of the second string. 
+
+Solution – 
+def checkInclusion(self, s1: str, s2: str) -> bool:
+        
+        target = Counter(s1)
+        counter = Counter(s2[:len(s1)-1])
+        i =1
+        for i,c in enumerate(s2[len(s1)-1:]):
+            counter[c] += 1
+            if target == counter:
+                return True
+            
+            counter[s2[i]] -= 1
+            if not counter[s2[i]]:
+                del counter[s2[i]]
